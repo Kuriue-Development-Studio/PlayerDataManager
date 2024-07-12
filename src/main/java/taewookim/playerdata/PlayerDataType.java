@@ -1,10 +1,13 @@
 package taewookim.playerdata;
 
 import taewookim.playerdata.inventorydata.InventoryData;
+import taewookim.playerdata.slotbardata.SlotBarData;
 
 public enum PlayerDataType {
 
-    Inventory(InventoryData.class);
+    Inventory(InventoryData.class),
+    SlotBar(SlotBarData.class),
+    ;
 
     private final Class<? extends Data> clz;
 
