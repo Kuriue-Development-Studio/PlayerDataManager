@@ -1,5 +1,6 @@
 package taewookim.playerdata;
 
+import taewookim.PlayerData;
 import taewookim.playerdata.inventorydata.InventoryData;
 import taewookim.playerdata.slotbardata.SlotBarData;
 
@@ -15,9 +16,9 @@ public enum PlayerDataType {
         this.clz = clz;
     }
 
-    public Data getData() {
+    public Data getData(PlayerData playerdata) {
         try{
-            return clz.getConstructor().newInstance();
+            return clz.getConstructor(PlayerData.class).newInstance(playerdata);
         }catch(Exception e) {
             e.printStackTrace();
             return null;

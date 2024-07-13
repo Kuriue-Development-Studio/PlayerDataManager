@@ -2,8 +2,13 @@ package taewookim.playerdata.slotbardata;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
+import taewookim.PlayerData;
+import taewookim.PlayerDataManager;
 import taewookim.playerdata.Data;
+import taewookim.playerdata.PlayerDataType;
+import taewookim.playerdata.inventorydata.InventoryData;
 import taewookim.playerdata.inventorydata.PlayerInventory;
+import util.ItemList;
 
 import java.io.File;
 import java.util.Map;
@@ -12,7 +17,8 @@ public class SlotBarData extends Data {
 
     private final SlotBarInventory slotbar;
 
-    public SlotBarData() {
+    public SlotBarData(PlayerData playerdata) {
+        super(playerdata);
         slotbar = new SlotBarInventory();
     }
 
@@ -30,6 +36,10 @@ public class SlotBarData extends Data {
         }catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void takeByInventory(int invslot, int barslot) {
+        slotbar.takeByInventory(playerdata, invslot, barslot);
     }
 
     @Override

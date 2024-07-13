@@ -1,10 +1,18 @@
 package taewookim.playerdata;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import taewookim.PlayerData;
+import taewookim.PlayerDataManager;
 
 import java.io.File;
 
 public abstract class Data {
+
+    protected final PlayerData playerdata;
+
+    public Data(PlayerData playerdata) {
+        this.playerdata = playerdata;
+    }
 
     public final String getFileLoc(String uuid) {
         return "/" + uuid + "/" + this.getClass().getSimpleName() + ".yml";

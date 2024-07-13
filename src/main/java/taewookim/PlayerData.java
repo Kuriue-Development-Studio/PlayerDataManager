@@ -15,7 +15,7 @@ public class PlayerData {
     public PlayerData(Player p) {
         this.p = p;
         for(PlayerDataType type : PlayerDataType.values()) {
-            datalist.put(type, type.getData());
+            datalist.put(type, type.getData(this));
         }
     }
 

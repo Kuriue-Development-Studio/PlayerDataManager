@@ -7,6 +7,11 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.ItemStack;
 import taewookim.CustomInventory;
+import taewookim.PlayerData;
+import taewookim.playerdata.PlayerDataType;
+import taewookim.playerdata.inventorydata.InventoryData;
+import taewookim.playerdata.inventorydata.PlayerInventory;
+import util.ItemList;
 
 public class SlotBarInventory extends CustomInventory {
     public SlotBarInventory() {
@@ -27,6 +32,18 @@ public class SlotBarInventory extends CustomInventory {
 
     public ItemStack getItem(int slot) {
         return inv.getItem(slot);
+    }
+
+    public void takeByInventory(PlayerData playerdata, int invslot, int barslot) {
+        PlayerInventory inv = ((InventoryData)playerdata.getData(PlayerDataType.Inventory))
+                .getInventory();
+        ItemStack item = inv.getItem(invslot);
+        inv.setItem(invslot, ItemList.air);
+        setItem(barslot, item);
+    }
+
+    public void setItem(int slot, ItemStack item) {
+        inv.setItem(slot, item);
     }
 
     @Override
