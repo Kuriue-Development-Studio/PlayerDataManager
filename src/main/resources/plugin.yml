@@ -3,8 +3,15 @@ version: Umm...
 api-version: 1.20
 main: taewookim.DataManagerPlugin
 
+permissions:
+  datamanager.admin:
+    default: op
+
 commands:
   inventory:
+  game:
+    permission: datamanager.admin
+
 
 depend:
   - Inventory_Maker
