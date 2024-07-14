@@ -1,16 +1,20 @@
 package taewookim.playerdata.inventorydata;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import taewookim.CustomInventory;
 import taewookim.PlayerData;
 import taewookim.playerdata.PlayerDataType;
 import taewookim.playerdata.slotbardata.SlotBarData;
 import util.ItemList;
+
+import java.util.HashMap;
 
 public class PlayerInventory extends CustomInventory {
 
@@ -28,6 +32,21 @@ public class PlayerInventory extends CustomInventory {
         for(int i = 0; i<54; i++) {
             config.set(i+"", inv.getItem(i));
         }
+    }
+
+    public boolean addItem(ItemStack i) {
+        if(hasEnoughSpace(inv.getStorageContents(), i)) {
+            inv.addItem(i);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean hasEnoughSpace(ItemStack[] content, ItemStack... item) {
+        Inventory inv = Bukkit.createInventory(null, 36);
+        inv.setContents(content);
+        HashMap<Integer, ItemStack> leftover = new HashMap<>(inv.addItem(item));
+        return leftover.isEmpty();
     }
 
     public void moveToSlotBar(PlayerData playerdata, int invslot, int barslot) {
