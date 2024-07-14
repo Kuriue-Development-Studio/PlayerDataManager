@@ -22,7 +22,7 @@ public class InteractInventoryGUI extends CustomInventory {
     private int invslot;
 
     public InteractInventoryGUI(int invslot) {
-        super(36, "핫바 슬롯을 바꾸시겠습니까?");
+        super(4, "핫바 슬롯을 바꾸시겠습니까?");
         this.invslot = invslot;
         for(int i = 0; i<27; i++) {
             inv.setItem(i, ItemList.black);

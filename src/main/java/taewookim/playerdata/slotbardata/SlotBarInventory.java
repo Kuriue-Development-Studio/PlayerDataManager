@@ -15,7 +15,7 @@ import util.ItemList;
 
 public class SlotBarInventory extends CustomInventory {
     public SlotBarInventory() {
-        super(9, null);
+        super(1, "슬롯바");
     }
 
     public void load(YamlConfiguration config) {

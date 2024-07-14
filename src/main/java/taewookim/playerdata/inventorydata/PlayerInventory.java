@@ -70,7 +70,7 @@ public class PlayerInventory extends CustomInventory {
 
     @Override
     public void onOpen(InventoryOpenEvent inventoryOpenEvent) {
-        if(!(inventoryOpenEvent instanceof Player)) {
+        if(!(inventoryOpenEvent.getPlayer() instanceof Player)) {
             inventoryOpenEvent.setCancelled(true);
         }
     }
