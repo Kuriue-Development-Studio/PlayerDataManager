@@ -39,6 +39,7 @@ public class SlotBarInventory extends CustomInventory {
                 .getInventory();
         ItemStack item = inv.getItem(invslot);
         inv.setItem(invslot, ItemList.air);
+        inv.addItem(getItem(barslot));
         setItem(barslot, item);
     }
 

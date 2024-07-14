@@ -1,7 +1,9 @@
 package taewookim.playerdata.inventorydata;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
@@ -10,6 +12,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import taewookim.CustomInventory;
 import taewookim.PlayerData;
+import taewookim.interaction.inventory.InteractInventoryGUI;
 import taewookim.playerdata.PlayerDataType;
 import taewookim.playerdata.slotbardata.SlotBarData;
 import util.ItemList;
@@ -52,8 +55,9 @@ public class PlayerInventory extends CustomInventory {
     public void moveToSlotBar(PlayerData playerdata, int invslot, int barslot) {
         ItemStack i = inv.getItem(invslot);
         inv.setItem(invslot, ItemList.air);
-        ((SlotBarData)playerdata.getData(PlayerDataType.SlotBar))
-                .getInventory().setItem(barslot, i);
+        SlotBarData bardata = ((SlotBarData)playerdata.getData(PlayerDataType.SlotBar));
+        addItem(bardata.getInventory().getItem(barslot));
+        bardata.getInventory().setItem(barslot, i);
     }
 
     public ItemStack getItem(int slot) {
@@ -66,7 +70,9 @@ public class PlayerInventory extends CustomInventory {
 
     @Override
     public void onOpen(InventoryOpenEvent inventoryOpenEvent) {
-
+        if(!(inventoryOpenEvent instanceof Player)) {
+            inventoryOpenEvent.setCancelled(true);
+        }
     }
 
     @Override
@@ -81,12 +87,16 @@ public class PlayerInventory extends CustomInventory {
 
     @Override
     public void onClickOutside(InventoryClickEvent inventoryClickEvent) {
-
+        inventoryClickEvent.setCancelled(true);
     }
 
     @Override
     public void onClick(InventoryClickEvent inventoryClickEvent) {
         inventoryClickEvent.setCancelled(true);
+        ItemStack i = inventoryClickEvent.getCurrentItem();
+        if(i!=null&&!i.getType().equals(Material.AIR)) {
+            new InteractInventoryGUI(inventoryClickEvent.getSlot()).openPlayer((Player) inventoryClickEvent.getWhoClicked());
+        }
     }
 
     @Override
