@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.ItemStack;
 import taewookim.CustomInventory;
+import taewookim.DataManagerPlugin;
 import taewookim.PlayerData;
 import taewookim.PlayerDataManager;
 import taewookim.playerdata.PlayerDataType;
@@ -74,10 +75,12 @@ public class InteractInventoryGUI extends CustomInventory {
             case 33:
             case 34:
             case 35:
-                PlayerData playerdata = PlayerDataManager.getPlayerData((Player) inventoryClickEvent.getWhoClicked());
+                Player p = (Player) inventoryClickEvent.getWhoClicked();
+                PlayerData playerdata = PlayerDataManager.getPlayerData(p);
                 PlayerInventory inventorydata = ((InventoryData) playerdata.getData(PlayerDataType.Inventory)).getInventory();
                 inventorydata.moveToSlotBar(playerdata, invslot, slot-27);
-                inventoryClickEvent.getWhoClicked().closeInventory();
+                p.closeInventory();
+                DataManagerPlugin.updateSlotBar(p);
                 break;
         }
     }
