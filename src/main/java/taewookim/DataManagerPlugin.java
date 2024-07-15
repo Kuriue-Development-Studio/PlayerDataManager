@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import taewookim.commands.GameCommand;
 import taewookim.commands.InventoryCommand;
 import taewookim.playerdata.PlayerDataType;
 import taewookim.playerdata.slotbardata.SlotBarData;
@@ -24,7 +25,11 @@ public class DataManagerPlugin extends JavaPlugin {
         for(int i = 0; i<9; i++) {
             ItemStack item = inv.getItem(i);
             if(item==null||item.getType().equals(Material.AIR)) {
-                pinv.setItem(i, ItemList.x);
+                if(p.getInventory().getHeldItemSlot()==i) {
+                    pinv.setItem(i, ItemList.air);
+                }else {
+                    pinv.setItem(i, ItemList.x);
+                }
             }else {
                 pinv.setItem(i, item);
             }
@@ -38,6 +43,7 @@ public class DataManagerPlugin extends JavaPlugin {
 
     public void loadCommands() {
         loadCommand("inventory", new InventoryCommand());
+        loadCommand("game", new GameCommand());
     }
 
     public void onEnable() {
