@@ -46,7 +46,7 @@ public class PlayerInventory extends CustomInventory {
     }
 
     public static boolean hasEnoughSpace(ItemStack[] content, ItemStack... item) {
-        Inventory inv = Bukkit.createInventory(null, 36);
+        Inventory inv = Bukkit.createInventory(null, 54);
         inv.setContents(content);
         HashMap<Integer, ItemStack> leftover = new HashMap<>(inv.addItem(item));
         return leftover.isEmpty();
