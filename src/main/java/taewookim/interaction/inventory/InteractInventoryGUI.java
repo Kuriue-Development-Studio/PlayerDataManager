@@ -77,6 +77,7 @@ public class InteractInventoryGUI extends CustomInventory {
                 PlayerData playerdata = PlayerDataManager.getPlayerData((Player) inventoryClickEvent.getWhoClicked());
                 PlayerInventory inventorydata = ((InventoryData) playerdata.getData(PlayerDataType.Inventory)).getInventory();
                 inventorydata.moveToSlotBar(playerdata, invslot, slot-27);
+                inventoryClickEvent.getWhoClicked().closeInventory();
                 break;
         }
     }
