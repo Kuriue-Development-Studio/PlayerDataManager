@@ -64,14 +64,6 @@ public class PlayerInventory extends CustomInventory {
         bardata.getInventory().setItem(barslot, i);
     }
 
-    public ItemStack getItem(int slot) {
-        return inv.getItem(slot);
-    }
-
-    public void setItem(int slot, ItemStack item) {
-        inv.setItem(slot, item);
-    }
-
     @Override
     public void onOpen(InventoryOpenEvent inventoryOpenEvent) {
         if(!(inventoryOpenEvent.getPlayer() instanceof Player)) {

@@ -30,10 +30,6 @@ public class SlotBarInventory extends CustomInventory {
         }
     }
 
-    public ItemStack getItem(int slot) {
-        return inv.getItem(slot);
-    }
-
     public void takeByInventory(PlayerData playerdata, int invslot, int barslot) {
         PlayerInventory inv = ((InventoryData)playerdata.getData(PlayerDataType.Inventory))
                 .getInventory();
@@ -41,10 +37,6 @@ public class SlotBarInventory extends CustomInventory {
         inv.setItem(invslot, ItemList.air);
         inv.addItem(getItem(barslot));
         setItem(barslot, item);
-    }
-
-    public void setItem(int slot, ItemStack item) {
-        inv.setItem(slot, item);
     }
 
     @Override

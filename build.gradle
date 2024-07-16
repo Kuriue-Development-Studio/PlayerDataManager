@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'taewookim'
-version = '2.3'
+version = '2.4'
 java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
@@ -57,7 +57,7 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     compileOnly "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT"
-    compileOnly "taewookim:Java_InventoryMaker:1.2"
+    compileOnly "taewookim:Java_InventoryMaker:1.4"
 }
 
 test {
